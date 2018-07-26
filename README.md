@@ -89,7 +89,7 @@ NOTE: this is a requirement for `sdk 26`. This approach should NOT require you t
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <paths xmlns:android="http://schemas.android.com/apk/res/android">
-    <external-path name="shared" path="." />
+    <external-path name="app_images" path="." />
 </paths>
 ```
 
@@ -99,6 +99,7 @@ NOTE: this is a requirement for `sdk 26`. This approach should NOT require you t
 <manifest ...>
     ......
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
           
@@ -107,27 +108,15 @@ NOTE: this is a requirement for `sdk 26`. This approach should NOT require you t
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="${applicationId}.fileprovider"
+            android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_provider_paths" />
+                android:resource="@xml/provider_paths" />
         </provider>
 
     </application>
-</manifest>
-```
-
-* !!! IMPORTANT !!!
-
-Remove the explicit Camera permission from your `AndroidManifest.xml`, in case you have it:
-
-```diff
-<manifest ...>
-
--    <uses-permission android:name="android.permission.CAMERA" />
-          
 </manifest>
 ```
 

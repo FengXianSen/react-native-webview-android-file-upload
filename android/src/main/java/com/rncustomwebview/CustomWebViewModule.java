@@ -169,7 +169,7 @@ public class CustomWebViewModule extends ReactContextBaseJavaModule implements A
         try {
             String packageName = getReactApplicationContext().getPackageName();
             File capturedFile = createCapturedFile(prefix, suffix);
-            outputFileUri = FileProvider.getUriForFile(getReactApplicationContext(), packageName+".fileprovider", capturedFile);
+            outputFileUri = FileProvider.getUriForFile(getReactApplicationContext(), packageName+".provider", capturedFile);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
             getCurrentActivity().startActivityForResult(intent, REQUEST_CAMERA);
         } catch (IOException ex) {
